@@ -22,13 +22,13 @@ export class ApiFetch {
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http
-      .post(apiUrl + 'users', userDetails)
+      .post(apiUrl + 'users/', userDetails)
       .pipe(catchError(this.handleError));
   }
 
   public userLogin(userDetails: any): Observable<any> {
     return this.http
-      .post(apiUrl + 'login', new URLSearchParams(userDetails), {})
+      .post(apiUrl + 'login', userDetails, {})
       .pipe(catchError(this.handleError));
   }
 
@@ -169,7 +169,8 @@ export class ApiFetch {
       console.error('Some error occurred:', error.error.message);
     } else {
       console.error(
-        `Error Status code ${error.status}, ` + `Error body is: ${error.error}`
+        `Error Status code ${error.status}, ` + `Error body is: ${error.error}`,
+        console.log(error)
       );
     }
     return throwError('Something bad happened; please try again later.');
