@@ -1,0 +1,35 @@
+<div class="main-page center">
+  <h1>Welcome to myFlix!</h1>
+  <div *ngIf="!userLoggedIn(); else loggedIn">
+    <button
+      mat-raised-button
+      (click)="openUserRegistrationDialog()"
+      style="margin-right: 10px"
+      color="primary"
+    >
+      Sign Up
+    </button>
+    <button
+      mat-raised-button
+      (click)="openUserLoginDialog()"
+      style="margin-right: 10px"
+      color="primary"
+    >
+      Login
+    </button>
+  </div>
+  <ng-template #loggedIn>
+    <div>
+      <p style="margin-bottom: -5px">Already logged in! Get started:</p>
+      <br />
+      <button mat-raised-button color="primary">
+        <a
+          routerLink="/movies"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >View Movies
+        </a>
+      </button>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,108 @@
+<div>
+  <mat-tab-group fxFlexAlign="stretch" class="anchor">
+    <mat-tab label="View Profile">
+      <div class="container">
+        <mat-card class="mat-card-container">
+          <div class="vertical-center row">
+            <ul style="list-style: none">
+              <li class="fnt2">Username: {{ user }}</li>
+              <li class="fnt2">Email: {{ email }}</li>
+              <li class="fnt2">Birthday: {{ birthday.split("T", 1) }}</li>
+            </ul>
+          </div>
+        </mat-card>
+      </div>
+    </mat-tab>
+    <mat-tab label="Update Profile">
+      <div class="container">
+        <mat-card class="mat-card-container" style="height: 500px">
+          <div class="vertical-center row">
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Current Username:</mat-label>
+                <input matInput placeholder="{{ user }}" value="{{ user }}" />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>New Username:</mat-label>
+                <input
+                  matInput
+                  placeholder="{{ user }}123"
+                  [(ngModel)]="userData.newUsername"
+                />
+              </mat-form-field>
+            </div>
+            <br />
+            <mat-form-field appearance="outline">
+              <mat-label>Current Email:</mat-label>
+              <input
+                matInput
+                placeholder="{{ email }}"
+                defaultValue="{{ email }}"
+                (ngModel)="(userData.currentEmail)"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>New Email:</mat-label>
+              <input
+                type="email"
+                matInput
+                [(ngModel)]="userData.newEmail"
+                placeholder="{{ email }}"
+              />
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="outline">
+              <mat-label>Current Password:</mat-label>
+              <input
+                [type]="passType[0]"
+                matInput
+                placeholder=""
+                [(ngModel)]="userData.oldPassword"
+              />
+            </mat-form-field>
+            <input type="checkbox" (click)="changePasswordType(0)" />Show
+            Password
+            <br />
+            <mat-form-field appearance="outline">
+              <mat-label>New Password:</mat-label>
+              <input
+                [type]="passType[1]"
+                [(ngModel)]="userData.newPassword1"
+                matInput
+                placeholder=""
+              />
+            </mat-form-field>
+            <input type="checkbox" (click)="changePasswordType(1)" />Show
+            Password
+            <br />
+            <mat-form-field appearance="outline">
+              <mat-label>Repeat New Password:</mat-label>
+              <input
+                [type]="passType[2]"
+                [(ngModel)]="userData.newPassword2"
+                matInput
+                placeholder=""
+              />
+            </mat-form-field>
+            <input type="checkbox" (click)="changePasswordType(2)" />Show
+            Password
+          </div>
+          <button mat-raised-button (click)="handleUpdate()" color="primary">
+            Submit
+          </button>
+          <button
+            mat-raised-button
+            (click)="handleDelete()"
+            color="warn"
+            style="margin-top: 20px"
+          >
+            Delete Account
+          </button>
+        </mat-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  <div>
+    <app-movie-card [profileFilter]="true"></app-movie-card>
+  </div>
+</div>

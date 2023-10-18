@@ -33,7 +33,7 @@ export class ApiFetch {
   }
 
   // user gets access to their profile
-  public getUserInfo(username: any): Observable<any> {
+  getUserInfo(username: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
       .get(apiUrl + 'users/' + username, {
@@ -44,7 +44,7 @@ export class ApiFetch {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  public editUserInfo(newUserInfo: any): Observable<any> {
+  editUserInfo(newUserInfo: any): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
     return this.http
@@ -89,10 +89,10 @@ export class ApiFetch {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  getOneGenre(genres: any): Observable<any> {
+  getOneGenre(genre: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'genres/' + genres, {
+      .get(apiUrl + 'genres/' + genre, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -122,19 +122,23 @@ export class ApiFetch {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  addFavoriteMovie(movieID: any): Observable<any> {
+  addFavoriteMovie(movieID: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
     return this.http
-      .post(apiUrl + 'users/' + user.Username + '/list/' + movieID, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token,
-        }),
-      })
+      .post(
+        apiUrl + 'users/' + user.Username + '/list/' + movieID,
+        {},
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + token,
+          }),
+        }
+      )
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  removeFavoriteMovie(movieID: any): Observable<any> {
+  removeFavoriteMovie(movieID: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
     return this.http
@@ -170,9 +174,12 @@ export class ApiFetch {
     } else {
       console.error(
         `Error Status code ${error.status}, ` + `Error body is: ${error.error}`,
-        console.log(error)
+        console.log(error.error)
       );
     }
-    return throwError('Something bad happened; please try again later.');
+    return (
+      throwError('Something bad happened; please try again later. '),
+      error.status
+    );
   }
 }

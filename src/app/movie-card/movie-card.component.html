@@ -1,0 +1,65 @@
+<div [ngClass]="{ profileSetting: profileFilter }" id="box" #box>
+  <!-- style="display: flex; flex-wrap: wrap; justify-content: center" -->
+  <mat-grid-list
+    cols="{{ setColumns() }}"
+    (window:resize)="setColumns()"
+    rowHeight="350px"
+    gutterSize="6px"
+    style="margin-top: 2px"
+  >
+    <mat-grid-tile *ngFor="let movie of movies" class="tile">
+      <mat-grid-tile-header class="justCenter" style="background-color: black">
+        <h3>{{ movie.Title }}</h3>
+      </mat-grid-tile-header>
+      <mat-card-content>
+        <div class="container">
+          <h4>Directed by: {{ movie.Director.Name }}</h4>
+          <img src="{{ movie.Imageurl }}" alt="{{ movie.Title }}" />
+        </div>
+      </mat-card-content>
+      <mat-grid-tile-footer
+        class="justCenter"
+        style="background-color: lightgrey"
+      >
+        <button
+          class="mvButton"
+          mat-button
+          color="primary"
+          (click)="openGenreDialog(movie.Genre.Name)"
+        >
+          Genre
+        </button>
+        <button
+          class="mvButton"
+          mat-button
+          color="primary"
+          (click)="openDirectorDialog(movie.Director.Name)"
+        >
+          Director
+        </button>
+        <button
+          class="mvButton"
+          mat-button
+          color="primary"
+          (click)="openDescriptionDialog(movie.Title, movie.Description)"
+        >
+          Synopsis
+        </button>
+        <button
+          class="favoriteButton"
+          *ngIf="checkFavorite(movie._id)"
+          (click)="removeFromFavorites(movie._id, movie.Title)"
+        >
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button
+          class="favoriteButton"
+          *ngIf="!checkFavorite(movie._id)"
+          (click)="addToFavorites(movie._id, movie.Title)"
+        >
+          <mat-icon>favorite_border</mat-icon>
+        </button>
+      </mat-grid-tile-footer>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
