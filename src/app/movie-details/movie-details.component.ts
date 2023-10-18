@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Component, Input, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -12,6 +13,7 @@ export class MovieDetailsComponent {
     public data: {
       head: string;
       body: string;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       extra: any;
     }
   ) {}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from '../user-login-form/user-login-form.component';
 
@@ -13,9 +13,8 @@ export class WelcomePageComponent {
   title = 'myFlix-Angular-client';
   constructor(public dialog: MatDialog) {}
   user: any;
-  ngOnInit(): void {}
   userLoggedIn() {
-    var ok;
+    let ok;
     try {
       ok = false;
       if (localStorage.getItem('user') !== null || '') {
