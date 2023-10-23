@@ -1,6 +1,10 @@
 # myFlix Angular Web App
 
-Using a MERN stack API ([repo](https://github.com/MattGaughan2022/nodeMovieAPI)), the user is able to register and login to a movie database.
+Using a MERN stack API ([repo](https://github.com/MattGaughan2022/nodeMovieAPI)), the app was made to test the use of Angular with the API endpoints created prior to this project. The user can create, login with, and manage their own account (editing and deletion). They also have access to features like viewing various movie data, and (un)favoriting movies from a user's list.
+
+## Walkthrough
+
+The user is met with a home page and able to register/login to a movie database.
 
 ![image](https://github.com/MattGaughan2022/myFlix-Angular-client/assets/80429635/deb1afdb-fe0e-4f0c-b786-1783270ef80e)
 
