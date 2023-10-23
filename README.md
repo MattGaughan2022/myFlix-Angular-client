@@ -2,6 +2,8 @@
 
 Using a MERN stack API ([repo](https://github.com/MattGaughan2022/nodeMovieAPI)), the app was made to test the use of Angular with the API endpoints created prior to this project. The user can create, login with, and manage their own account (editing and deletion). They also have access to features like viewing various movie data, and (un)favoriting movies from a user's list.
 
+Original React-based web page -> [link](https://mattg-moviesreact.netlify.app/login)
+
 ## Walkthrough
 
 The user is met with a home page and able to register/login to a movie database.
@@ -23,8 +25,6 @@ Accessing the user profile page brings up a mat-tab showcasing the user's info, 
 The user must provide the current password (verified in the update process) as well as any new information that they wish to update.  
 
 ![image](https://github.com/MattGaughan2022/myFlix-Angular-client/assets/80429635/17eff7fd-a0a1-42c5-93ef-e361becf7648)
-
-Original React-based web page -> [link](https://mattg-moviesreact.netlify.app/login)
 
 ## MyFlixAngularClient
 
